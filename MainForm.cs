@@ -20,7 +20,17 @@ namespace ReestrFormatter
         private void changeButton_Click(object sender, EventArgs e)
         {
             Formatter _formatter=new Formatter();
-            _formatter.Format(pathTextBox.Text);
+            var result = _formatter.Format(pathTextBox.Text);
+
+            if (result == 1)
+            {
+                MessageBox.Show("Ресстр отформатирован",
+                    "Готово",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information,
+                    MessageBoxDefaultButton.Button1,
+                    MessageBoxOptions.DefaultDesktopOnly);
+            }
         }
     }
 }

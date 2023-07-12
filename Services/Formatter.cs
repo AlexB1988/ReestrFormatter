@@ -10,12 +10,16 @@ namespace ReestrFormatter.Services
     {
 
 
-        public async Task Format(string path)
+        public int  Format(string path)
         {
             string fileName = Path.GetFileName(path);
             string newPath = path.Substring(0, path.Length - fileName.Length) + "copy" + fileName;
 
             string id = fileName.Substring(0, 5);
+            if (id == "30538")
+            {
+                id = "30473";
+            }
 
 
             Console.WriteLine(newPath);
@@ -31,7 +35,7 @@ namespace ReestrFormatter.Services
             {
                 try
                 {
-                    while ((text = await reader.ReadLineAsync()) != null)
+                    while ((text = reader.ReadLine()) != null)
                     {
                         if (text.StartsWith("="))
                         {
@@ -66,8 +70,10 @@ namespace ReestrFormatter.Services
             {
                 foreach (var line in lines)
                 {
-                    await writer.WriteLineAsync(line);
+                    writer.WriteLine(line);
                 }
+
+                return 1;
             }
         }
     }
