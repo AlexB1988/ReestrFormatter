@@ -72,6 +72,17 @@ namespace ReestrFormatter
                 }
             }
 
+            id = fileName.Substring(0, 8);
+
+            if (id == "532_1302" || id == "532_1304")
+            {
+                using (var service = _lifetimeScope.ResolveNamed<Owned<IFormatter>>("tns"))
+                {
+                    result = service.Value.Format(path, id);
+                }
+            }
+
+
             if (result == 1)
             {
                 MessageBox.Show("Ресстр отформатирован",

@@ -1,6 +1,4 @@
-﻿
-
-namespace ReestrFormatter.Interfaces
+﻿namespace ReestrFormatter.Interfaces
 {
     public interface IFormatter
     {

@@ -5,25 +5,15 @@ namespace ReestrFormatter.Services
 {
     public class SberFormatter : IFormatter
     {
-        //public string PathName { get; set; }
-        //public SberFormatter( string path)
-        //{
-        //    PathName = path;
-        //}
-        public int Format(string path,string id)
+        public int Format(string path, string id)
         {
-            string fileName = Path.GetFileName(path);
-            string newPath = path.Substring(0, path.Length - fileName.Length) + "copy" + fileName;
-
-            //string id = fileName.Substring(0, 5);
-            //Замена сберовского идентификатора
             if (id == "30538")
             {
                 id = "30473";
             }
 
-            Console.WriteLine(newPath);
-
+            string fileName = Path.GetFileName(path);
+            string newPath = path.Substring(0, path.Length - fileName.Length) + "copy" + fileName;
 
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             var scrEncoding = Encoding.GetEncoding("windows-1251");
@@ -44,7 +34,7 @@ namespace ReestrFormatter.Services
                         }
                         int countChar = 0;
                         int countPoint = 0;
-                       
+
                         foreach (var t in text)
                         {
                             countPoint++;
@@ -77,6 +67,6 @@ namespace ReestrFormatter.Services
 
                 return 1;
             }
-
-    }   }
+        }
+    }   
 }

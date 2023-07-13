@@ -14,6 +14,7 @@ namespace ReestrFormatter.DI
             builder.RegisterType<RnkbFormatter>().Named<IFormatter>("rnkb"); 
             builder.RegisterType<OtkritieFormatter>().Named<IFormatter>("otkr");
             builder.RegisterType<KbFormatter>().Named<IFormatter>("kb");
+            builder.RegisterType<TnsFormatter>().Named<IFormatter>("tns");
             builder.RegisterType<MainForm>().AsSelf();
             builder.RegisterAssemblyTypes(typeof(Program).Assembly)
                 .AssignableTo<Form>()

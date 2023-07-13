@@ -3,19 +3,14 @@ using System.Text;
 
 namespace ReestrFormatter.Services
 {
-    public class KbFormatter : IFormatter
+    public class TnsFormatter : IFormatter
     {
         public int Format(string path, string id)
         {
-            if (id == "22456")
+            if (id == "532_1302")
             {
                 id = "30483";
             }
-            else if (id == "65824")
-            {
-                id = "30473";
-            }
-
             string fileName = Path.GetFileName(path);
             string newPath = path.Substring(0, path.Length - fileName.Length) + "copy" + fileName;
 
@@ -31,11 +26,6 @@ namespace ReestrFormatter.Services
                 {
                     while ((text = reader.ReadLine()) != null)
                     {
-                        if (text.StartsWith("="))
-                        {
-                            lines.Add(text);
-                            break;
-                        }
                         int countChar = 0;
                         int countPoint = 0;
 
@@ -45,7 +35,7 @@ namespace ReestrFormatter.Services
                             if (t == ';')
                             {
                                 countChar++;
-                                if (countChar == 5)
+                                if (countChar == 2)
                                 {
                                     text = text.Insert(countPoint, id);
                                     break;
