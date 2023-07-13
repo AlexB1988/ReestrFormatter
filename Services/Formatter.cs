@@ -8,17 +8,36 @@ namespace ReestrFormatter.Services
 {
     public class Formatter
     {
-
-
+        
         public int  Format(string path)
         {
             string fileName = Path.GetFileName(path);
             string newPath = path.Substring(0, path.Length - fileName.Length) + "copy" + fileName;
 
             string id = fileName.Substring(0, 5);
+            string bank = "sber";
+            //Замена сберовского идентификатора
             if (id == "30538")
             {
                 id = "30473";
+            }
+            //Замена Кубань-Кредита (не хватает ещё 2-ух) 
+            else if (id == "22456")
+            {
+                id = "30483";
+                bank = "kuban";
+            }
+            else if (id == "65824")
+            {
+                id = "30473";
+                bank = "kuban";
+            }
+
+            //Замена для Почта-банка
+            else if (id == "1856_" ||id=="1857_")
+            {
+                id = "30473";
+                bank = "pochta";
             }
 
 
@@ -44,19 +63,54 @@ namespace ReestrFormatter.Services
                         }
                         int countChar = 0;
                         int countPoint = 0;
-                        foreach (var t in text)
+                        if (bank == "pochta" && text.StartsWith("1"))
                         {
-                            countPoint++;
-                            if (t == ';')
+                            foreach (var t in text)
                             {
-                                countChar++;
-                                if (countChar == 5)
+                                countPoint++;
+                                if (t == ';')
                                 {
-                                    text = text.Insert(countPoint, id);
-                                    break;
+                                    countChar++;
+                                    if (countChar == 1)
+                                    {
+                                        text = text.Insert(countPoint, id);
+                                    }
                                 }
                             }
                         }
+                        if (bank == "pochta" && text.StartsWith("2"))
+                        {
+                            foreach (var t in text)
+                            {
+                                countPoint++;
+                                if (t == ';')
+                                {
+                                    countChar++;
+                                    if (countChar == 1)
+                                    {
+                                        text = text.Insert(countPoint, id);
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            foreach (var t in text)
+                            {
+                                countPoint++;
+                                if (t == ';')
+                                {
+                                    countChar++;
+                                    if (countChar == 5)
+                                    {
+                                        text = text.Insert(countPoint, id);
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+
                         lines.Add(text);
                     }
                 }
