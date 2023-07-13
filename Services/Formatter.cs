@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace ReestrFormatter.Services
 {
@@ -75,6 +71,25 @@ namespace ReestrFormatter.Services
                 id = "30542";
                 bank = "rnkb";
             }
+
+            //Замена для банка Открытие
+
+            else if (id == "krylov")
+            {
+                id = "30483";
+                bank = "otkr";
+            }
+            else if (id == "novopl")
+            {
+                id = "30541";
+                bank = "otkr";
+            }
+            else if (id == "okt07_")
+            {
+                id = "30542";
+                bank = "otkr";
+            }
+
             Console.WriteLine(newPath);
 
 
@@ -128,10 +143,11 @@ namespace ReestrFormatter.Services
                                 }
                             }
                         }
-                        if (bank == "rnkb")
+                        if (bank == "rnkb" ||bank=="otkr")
                         {
                             text = id + text;
                         }
+
                         else
                         {
                             foreach (var t in text)
