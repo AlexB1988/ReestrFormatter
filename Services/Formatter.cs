@@ -32,15 +32,49 @@ namespace ReestrFormatter.Services
                 id = "30473";
                 bank = "kuban";
             }
-
             //Замена для Почта-банка
+            else if (id == "1984_" || id == "1985_")
+            {
+                id = "30483";
+                bank = "pochta";
+            }
             else if (id == "1856_" ||id=="1857_")
             {
                 id = "30473";
                 bank = "pochta";
             }
+            else if (id == "1986_")
+            {
+                id = "30541";
+                bank = "pochta";
+            }
+            else if (id == "1987_")
+            {
+                id = "30542";
+                bank = "pochta";
+            }
 
-
+            //Замена для РНКБ
+            else if (id == "Krl_0")
+            {
+                id = "30483";
+                bank = "rnkb";
+            }
+            else if (id == "Len_7")
+            {
+                id = "30473";
+                bank = "rnkb";
+            }
+            else if(id== "Novop")
+            {
+                id = "30541";
+                bank = "rnkb";
+            }
+            else if (id == "Okt_0")
+            {
+                id = "30542";
+                bank = "rnkb";
+            }
             Console.WriteLine(newPath);
 
 
@@ -93,6 +127,10 @@ namespace ReestrFormatter.Services
                                     }
                                 }
                             }
+                        }
+                        if (bank == "rnkb")
+                        {
+                            text = id + text;
                         }
                         else
                         {
